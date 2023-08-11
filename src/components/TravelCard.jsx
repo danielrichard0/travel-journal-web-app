@@ -2,23 +2,22 @@ import React from "react"
 import LocationImg from "../assets/location.png"
 import MountIjen from "../assets/Mount_Ijen.jpg"
 
-export default function TravelCard() {
+
+export default function TravelCard(props) {
     return (
         <section  className="card--body">
-            <img className="card--image" src={MountIjen} alt="hi there" />         
+            <img className="card--image" src={props.item.image} alt="hi there" />         
             <div className="card--details">
                 <div className="card--location">
                     <img src={LocationImg} alt="" />
-                    <h4>Jawa Tengah, Indonesia</h4>
+                    <h4>{props.item.location}</h4>
                 </div>
-                <h1 className="card--title">Mount Ijen</h1>
+                <h1 className="card--title">{props.item.title}</h1>
                 <p className="card--date">
-                    28 may 2022
+                    {props.item.date}
                 </p>
                 <p className="card--paragraph">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit maiores odit laboriosam odio ex
-                    repudiandae reprehenderit error ea veritatis consequuntur. Quibusdam dignissimos dicta molestiae
-                    non sunt doloremque quisquam, quis eos sed tenetur quod temporibus vel ut aliquid ipsum
+                    {props.item.description}
                 </p>
             </div>
 
