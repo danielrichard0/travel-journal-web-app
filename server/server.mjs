@@ -9,8 +9,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/user", users);
+app.use("/", users);
 
-app.listen(PORT, () => {
+
+app.listen(PORT, () => { 
     console.log(`server listening on port ${PORT}`)
 })
