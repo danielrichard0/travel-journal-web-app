@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Your password is required"]
     }
-})
+});
 
 userSchema.pre("save", async function() {
     this.password = await bcrypt.hash(this.password, 12);
