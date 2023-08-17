@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useCookies } from "react-cookie";
 
 const LoginForm = () => {
+  const [cookies, removeCookie] = useCookies([]);
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
     email: "",
@@ -20,7 +23,7 @@ const LoginForm = () => {
 
   const handleError = (err) =>
     toast.error(err, {
-      position: "bottom-left",
+      position: "top-right",
     });
   const handleSuccess = (msg) =>
     toast.success(msg, {
@@ -37,12 +40,11 @@ const LoginForm = () => {
         },
         { withCredentials: true }
       );
-      console.log(data);
       const { success, message } = data;
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          navigate("/");
+          window.location.reload();
         }, 1000);
       } else {
         handleError(message);
@@ -57,7 +59,13 @@ const LoginForm = () => {
     });
   };
 
-  return (
+  const Logout = () => {
+    // console.log(cookies);
+    removeCookie("token");
+    window.location.reload();
+  };
+
+  const loginModal = (
     <div>
       {/* <!-- Modal toggle --> */}
       <button
@@ -190,6 +198,21 @@ const LoginForm = () => {
       <ToastContainer />
     </div>
   );
+
+  const logoutButton = (
+    <button
+      onClick={Logout}
+      className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+    >
+      Logout
+    </button>
+  );
+  // console.log(cookies.token === "undefined");
+  return cookies.token === undefined ||
+    cookies.token === null ||
+    cookies.token === "undefined"
+    ? loginModal
+    : logoutButton;
 };
 
 export default LoginForm;

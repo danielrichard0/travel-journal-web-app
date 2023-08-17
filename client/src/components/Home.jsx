@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -36,10 +37,10 @@ export default function Home() {
     navigate("/");
   };
 
-  if (cookies.token) {
+  if (cookies.token !== undefined && cookies.token !== "undefined") {
     return (
       <div className="home">
-        <h1 className="greeting--title"> Hello {username}! </h1>
+        <h1 className="greeting--title"> Damn you {username}! </h1>
       </div>
     );
   }
