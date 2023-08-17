@@ -16,13 +16,14 @@ mongoose
   .then(() => console.log("MongoDB is  connected successfully"))
   .catch((err) => console.error(err));
 
+
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });
 
 app.use(
   cors({
-    origin: ["http://localhost:5050"],
+    origin: ["http://localhost:5173"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })

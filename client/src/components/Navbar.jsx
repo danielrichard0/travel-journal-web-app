@@ -1,6 +1,8 @@
 import React from "react";
-import LoginForm from "./Modal";
+import LoginForm from "./Login";
 import { Route, Routes } from "react-router-dom";
+import Signup from "./Signup";
+import Auth from "./Auth";
 
 export default function Navbar() {
   return (
@@ -16,9 +18,9 @@ export default function Navbar() {
 
       <div className="navbar--auth">
         <Routes>
-          <Route exact path="/" element={<LoginForm />} />
+          <Route path="/" element={<LoginForm />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
-        <h2>Signup</h2>
         <h2>Make New</h2>
       </div>
     </nav>

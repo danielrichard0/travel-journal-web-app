@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import TravelCard from "./components/TravelCard";
 import data from "./data";
 import "./App.css";
+import Home from "./components/Home";
 
 export default function App() {
   const cards = data.map((item) => {
@@ -12,6 +13,7 @@ export default function App() {
   return (
     <div>
       <Navbar />
+      <Home />
       {cards}
     </div>
   );

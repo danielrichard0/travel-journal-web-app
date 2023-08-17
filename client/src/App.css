@@ -78,5 +78,11 @@
   margin: 0;
 }
 
+.home {
+  text-align: center;
+  font-weight: 700;
+  font-size: 72px;
+  padding-bottom: 100px;
+}
 
 
