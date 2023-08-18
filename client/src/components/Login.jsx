@@ -5,9 +5,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useCookies } from "react-cookie";
 
-const LoginForm = () => {
+// async function ToastLogin() {
+//   await window.location.reload();
+
+// }
+
+const LoginForm = ({ navigate }) => {
   const [cookies, removeCookie] = useCookies([]);
-  const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
     email: "",
     password: "",
@@ -27,7 +31,8 @@ const LoginForm = () => {
     });
   const handleSuccess = (msg) =>
     toast.success(msg, {
-      position: "bottom-left",
+      position: "bottom-right",
+      autoClose: 1000,
     });
 
   const handleSubmit = async (e) => {
@@ -45,7 +50,7 @@ const LoginForm = () => {
         handleSuccess(message);
         setTimeout(() => {
           window.location.reload();
-        }, 1000);
+        }, 2000);
       } else {
         handleError(message);
       }
@@ -61,6 +66,9 @@ const LoginForm = () => {
 
   const Logout = () => {
     // console.log(cookies);
+    toast.success("msg", {
+      position: "top-right",
+    });
     removeCookie("token");
     window.location.reload();
   };
@@ -199,6 +207,15 @@ const LoginForm = () => {
     </div>
   );
 
+  const signupButton = (
+    <button
+      onClick={() => navigate("/signup")}
+      className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+    >
+      Signup
+    </button>
+  );
+
   const logoutButton = (
     <button
       onClick={Logout}
@@ -208,11 +225,19 @@ const LoginForm = () => {
     </button>
   );
   // console.log(cookies.token === "undefined");
-  return cookies.token === undefined ||
-    cookies.token === null ||
-    cookies.token === "undefined"
-    ? loginModal
-    : logoutButton;
+  return (
+    <>
+      {cookies.token === undefined ||
+      cookies.token === null ||
+      cookies.token === "undefined" ? (
+        <>{loginModal}</>
+      ) : (
+        <>
+          {logoutButton} {signupButton}
+        </>
+      )}
+    </>
+  );
 };
 
 export default LoginForm;

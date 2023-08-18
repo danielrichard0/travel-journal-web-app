@@ -11,26 +11,25 @@ export default function Home() {
   const [cookies, removeCookie] = useCookies([]);
   const [username, setUsername] = useState("");
 
-  useEffect(() => {
-    const verifyCookie = async () => {
-      if (cookies.token) {
-        const { data } = await axios.post(
-          "http://localhost:5050",
-          {},
-          { withCredentials: true }
-        );
-        const { status, user } = data;
-        console.log(data);
-        setUsername(user);
-        return status
-          ? toast(`hello ${user}`, {
-              position: "bottom-right",
-            })
-          : (removeCookie("token"), navigate("/"));
-      }
-    };
-    verifyCookie();
-  }, [cookies, navigate, removeCookie]);
+  // useEffect(() => {
+  //   const verifyCookie = async () => {
+  //     if (cookies.token) {
+  //       const { data } = await axios.post(
+  //         "http://localhost:5050",
+  //         {},
+  //         { withCredentials: true }
+  //       );
+  //       const { status, user } = data;
+  //       setUsername(user);
+  //       return status
+  //         ? toast(`hello ${user}`, {
+  //             position: "bottom-right",
+  //           })
+  //         : (removeCookie("token"), navigate("/"));
+  //     }
+  //   };
+  //   verifyCookie();
+  // }, [cookies, navigate, removeCookie]);
 
   const Logout = () => {
     removeCookie("token");
@@ -40,7 +39,7 @@ export default function Home() {
   if (cookies.token !== undefined && cookies.token !== "undefined") {
     return (
       <div className="home">
-        <h1 className="greeting--title"> Damn you {username}! </h1>
+        <h1 className="greeting--title"> Hello {username}! </h1>
       </div>
     );
   }

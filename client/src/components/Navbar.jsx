@@ -2,9 +2,9 @@ import React from "react";
 import LoginForm from "./Login";
 import { Route, Routes } from "react-router-dom";
 import Signup from "./Signup";
-import Auth from "./Auth";
 
-export default function Navbar() {
+export default function Navbar({ navigate }) {
+  // console.log(`hello ${navigate}`);
   return (
     <nav>
       <div className="web-title">
@@ -18,8 +18,7 @@ export default function Navbar() {
 
       <div className="navbar--auth">
         <Routes>
-          <Route path="/" element={<LoginForm />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/" element={<LoginForm navigate={navigate} />} />
         </Routes>
         <h2>Make New</h2>
       </div>
