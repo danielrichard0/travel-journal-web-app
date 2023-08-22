@@ -4,12 +4,13 @@ import bcrypt from "bcrypt";
 
 const Signup = async (req, res, next) => {
     try {
-        const { username, email, password } = req.body;
+        const { firstName, lastName, email, password } = req.body;
+        console.log(email);
         const existingUser = await User.findOne({ email });
         if(existingUser) {
             return res.json({ message: "User Already Exist" });
         }
-        const user = await User.create({ username,email,password });
+        const user = await User.create({ firstName,lastName,email,password });
         // console.log(`user id : ${user._id}`);
         const token = createSecretToken(user._id);
         res.cookie("token", token, {
@@ -32,6 +33,7 @@ const Login = async (req, res, next) => {
           return res.json({message:'All fields are required'})
         }
         const user = await User.findOne({ email });
+        console.log(user)
         if(!user){
           return res.json({message:'Incorrect password or email' }) 
         }
@@ -44,7 +46,7 @@ const Login = async (req, res, next) => {
            withCredentials: true,
            httpOnly: false,
          });
-         res.status(201).json({ message: "User logged in successfully", success: true });
+         res.status(200).json({ message: "User logged in successfully", success: true, userId: user._id });
          next()
       } catch (error) {
         console.error(error);

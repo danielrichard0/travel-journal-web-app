@@ -1,0 +1,32 @@
+.no--post {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    justify-content: center;
+    margin: auto;
+    
+}
+
+.no--post > h1 {
+    text-align: center;
+    font-weight: 800;
+    font-size: 30px;
+}
+
+.no--post > p {
+    padding-block: 20px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.post-button-0 {
+    text-align: center;
+    margin: auto;
+    margin-bottom: 50px;
+  }
+
+.post-exist {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
